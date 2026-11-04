@@ -113,7 +113,7 @@
     box-sizing: border-box;
     -webkit-appearance: none;
     appearance: none;
-    cursor: inherit;
+    cursor: pointer;
     z-index: 21;
     box-shadow: 0 0 14px rgba(77, 215, 255, .28);
     transition: box-shadow .2s;
@@ -205,11 +205,13 @@
   document.addEventListener('selectstart', function(e){ e.preventDefault(); });
   document.addEventListener('dragstart', function(e){ e.preventDefault(); });
   document.addEventListener('dblclick', function(e){ e.preventDefault(); });
+  document.addEventListener('mousedown', function(e){ e.preventDefault(); });
 
   document.addEventListener('pointerdown', function(e){
     if (e.button !== 0) return;
     if (e.target === help) return;
     if (helpBox.classList.contains('open')) return;
+    e.preventDefault();
     cursor.x = e.clientX; cursor.y = e.clientY;
     fingers++;
     try { document.documentElement.setPointerCapture(e.pointerId); } catch (err) {}
